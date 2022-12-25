@@ -3,7 +3,19 @@
 import 'package:flutter/material.dart';
 
 class Gonderikarti extends StatelessWidget {
-  const Gonderikarti({super.key});
+  final String ProfilResimLinki;
+  final String IsimsoyIsim;
+  final String GecenSure;
+  final String GonderiResimLinki;
+  final String Aciklama;
+
+  const Gonderikarti(
+      {super.key,
+      required this.ProfilResimLinki,
+      required this.IsimsoyIsim,
+      required this.GecenSure,
+      required this.GonderiResimLinki,
+      required this.Aciklama});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +27,7 @@ class Gonderikarti extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(15.0),
           width: double.infinity,
-          height: 380,
+          height: 391,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12), color: Colors.white),
           child: Column(
@@ -33,8 +45,7 @@ class Gonderikarti extends StatelessWidget {
                               borderRadius: BorderRadius.circular(30),
                               color: Colors.indigo,
                               image: DecorationImage(
-                                  image: NetworkImage(
-                                      "http://www.akhisarhaber.net/2010/08/dugunkurali/akhisarkuraliailesi(9).JPG"),
+                                  image: NetworkImage(ProfilResimLinki),
                                   fit: BoxFit.cover))),
                       SizedBox(
                         width: 12,
@@ -43,7 +54,7 @@ class Gonderikarti extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            "İsim Soyisim",
+                            IsimsoyIsim,
                             style: TextStyle(
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
@@ -51,7 +62,7 @@ class Gonderikarti extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "1 saat önce",
+                            GecenSure,
                             style: TextStyle(
                                 fontSize: 12,
                                 fontWeight: FontWeight.bold,
@@ -68,7 +79,7 @@ class Gonderikarti extends StatelessWidget {
                 height: 15,
               ),
               Text(
-                "Resim açıklaması",
+                Aciklama,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
@@ -79,19 +90,80 @@ class Gonderikarti extends StatelessWidget {
                 height: 20,
               ),
               Image.network(
-                "http://www.akhisarhaber.net/2010/08/dugunkurali/akhisarkuraliailesi(9).JPG",
+                GonderiResimLinki,
                 width: double.infinity,
                 height: 200,
                 fit: BoxFit.fill,
               ),
+              SizedBox(
+                height: 4,
+              ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Container(
-                    child: Row(
-                      children: [Icon(Icons.favorite, color: Colors.grey)],
-                    ),
+                  IconluButon(
+                    ikonum: Icons.favorite,
+                    yazi: 'Beğen',
+                    fonksiyonum: () {
+                      print("Beğen");
+                    },
                   ),
+                  IconluButon(
+                    yazi: 'Yorum Yap',
+                    ikonum: Icons.comment,
+                    fonksiyonum: () {
+                      print("Yorum");
+                    },
+                  ),
+                  TextButton.icon(
+                      onPressed: (() {}),
+                      icon: Icon(
+                        Icons.share,
+                        color: Colors.grey,
+                      ),
+                      label: Text(
+                        "Paylaş",
+                        style: TextStyle(
+                            color: Colors.grey, fontWeight: FontWeight.bold),
+                      ))
                 ],
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class IconluButon extends StatelessWidget {
+  final IconData ikonum;
+  final String yazi;
+  final fonksiyonum;
+  IconluButon({required this.ikonum, required this.yazi, this.fonksiyonum});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.white,
+      child: InkWell(
+        onTap: fonksiyonum,
+        child: Container(
+          padding: EdgeInsets.all(8),
+          child: Row(
+            children: [
+              Icon(
+                ikonum,
+                color: Colors.grey,
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              Text(
+                yazi,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
               )
             ],
           ),
