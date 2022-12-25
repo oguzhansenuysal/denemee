@@ -1,115 +1,276 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
+      title: 'Projem',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: AnaSayfa(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class AnaSayfa extends StatelessWidget {
+  const AnaSayfa({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: Colors.grey.shade100,
       appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+        backgroundColor: Colors.grey.shade100,
+        elevation: 0.0,
+        leading: IconButton(
+            onPressed: () {},
+            icon: Icon(
+              Icons.menu,
+              color: Colors.green.shade700,
+              size: 32.0,
+            )),
+        title: Text(
+          "SocialWorld",
+          style: TextStyle(fontSize: 20, color: Colors.grey),
+        ),
+        centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () {},
+              icon: Icon(
+                Icons.notifications,
+                color: Colors.purple.shade700,
+                size: 32.0,
+              )),
+        ],
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
+      body: ListView(
+        children: [
+          Container(
+            decoration: BoxDecoration(color: Colors.grey.shade200, boxShadow: [
+              BoxShadow(color: Colors.grey, offset: Offset(0, 3), blurRadius: 5)
+            ]),
+            height: 100.0,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                profilkarti("Şadol",
+                    "https://cdn.pixabay.com/photo/2016/11/21/14/53/man-1845814_960_720.jpg"),
+                profilkarti("Furkan",
+                    "https://media-exp1.licdn.com/dms/image/C4D03AQEDs2Z-662D7w/profile-displayphoto-shrink_200_200/0/1651955791783?e=1675900800&v=beta&t=CsfGJhEnoDjL3fbeQ3byq9nLFgRkLL4U5MAOB7zAmZ4"),
+                profilkarti("Salih",
+                    "https://cdn.pixabay.com/photo/2016/11/21/14/53/man-1845814_960_720.jpg"),
+                profilkarti("Oğuzhan",
+                    "https://media.licdn.com/dms/image/C4D03AQH18j3jX1CHQw/profile-displayphoto-shrink_200_200/0/1636666394118?e=1677110400&v=beta&t=-JEELUL6Pgl95vL3BQAMPHy0q0pYfToAdTYmpQ_y9SQ"),
+                profilkarti("Ali",
+                    "https://cdn.pixabay.com/photo/2014/11/29/19/33/bald-eagle-550804__340.jpg"),
+                profilkarti("Cem",
+                    "https://cdn.pixabay.com/photo/2014/04/12/14/59/portrait-322470_960_720.jpg"),
+              ],
             ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Gonderikarti(),
+          Gonderikarti()
+        ],
+      ),
+    );
+  }
+
+  Padding Gonderikarti() {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Material(
+        elevation: 1,
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          padding: EdgeInsets.all(15.0),
+          width: double.infinity,
+          height: 380,
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12), color: Colors.white),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Row(
+                    children: [
+                      Container(
+                          width: 50,
+                          height: 50,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(30),
+                              color: Colors.indigo,
+                              image: DecorationImage(
+                                  image: NetworkImage(
+                                      "http://www.akhisarhaber.net/2010/08/dugunkurali/akhisarkuraliailesi(9).JPG"),
+                                  fit: BoxFit.cover))),
+                      SizedBox(
+                        width: 12,
+                      ),
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            "İsim Soyisim",
+                            style: TextStyle(
+                              fontSize: 15,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.black,
+                            ),
+                          ),
+                          Text(
+                            "1 saat önce",
+                            style: TextStyle(
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey),
+                          )
+                        ],
+                      ),
+                    ],
+                  ),
+                  Icon(Icons.more_vert)
+                ],
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              Text(
+                "Resim açıklaması",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.grey,
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Image.network(
+                "http://www.akhisarhaber.net/2010/08/dugunkurali/akhisarkuraliailesi(9).JPG",
+                width: double.infinity,
+                height: 200,
+                fit: BoxFit.fill,
+              ),
+              SizedBox(
+                height: 2,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  IconluButon(
+                    ikonum: Icons.favorite,
+                    yazi: 'Beğen',
+                    fonksiyonum: (() {
+                      print("Beğen");
+                    }),
+                  ),
+                  IconluButon(
+                    ikonum: Icons.comment,
+                    yazi: 'Yorum Yap',
+                    fonksiyonum: (() {
+                      print("Yorum");
+                    }),
+                  ),
+                  IconluButon(
+                    ikonum: Icons.share,
+                    yazi: 'Paylaş',
+                    fonksiyonum: (() {
+                      print("Paylaş");
+                    }),
+                  ),
+                ],
+              )
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+    );
+  }
+
+  Widget profilkarti(String kullaniciadi, String resimlinki) {
+    return Padding(
+      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+      child: Column(
+        children: [
+          Stack(
+            alignment: Alignment.topRight,
+            children: [
+              Container(
+                  width: 70,
+                  height: 70,
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      border: Border.all(width: 2.0, color: Colors.grey),
+                      borderRadius: BorderRadius.circular(35.0),
+                      image: DecorationImage(
+                          image: NetworkImage(resimlinki), fit: BoxFit.cover))),
+              Container(
+                width: 20,
+                height: 20,
+                decoration: BoxDecoration(
+                    color: Colors.green,
+                    borderRadius: BorderRadius.circular(25),
+                    border: Border.all(width: 2, color: Colors.white)),
+              )
+            ],
+          ),
+          SizedBox(height: 4),
+          Text(
+            kullaniciadi,
+            style: TextStyle(fontSize: 15.0, color: Colors.black),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class IconluButon extends StatelessWidget {
+  final ikonum;
+  final String yazi;
+  final fonksiyonum;
+  IconluButon({this.ikonum, required this.yazi, this.fonksiyonum});
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      child: InkWell(
+        onTap: fonksiyonum,
+        child: Container(
+          padding: EdgeInsets.all(8),
+          child: Row(
+            children: [
+              Icon(
+                ikonum,
+                color: Colors.grey,
+              ),
+              SizedBox(
+                width: 8,
+              ),
+              Text(
+                yazi,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                ),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
