@@ -96,7 +96,7 @@ class AnaSayfa extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.all(15.0),
           width: double.infinity,
-          height: 380,
+          height: 388,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(12), color: Colors.white),
           child: Column(
@@ -185,13 +185,17 @@ class AnaSayfa extends StatelessWidget {
                       print("Yorum");
                     }),
                   ),
-                  IconluButon(
-                    ikonum: Icons.share,
-                    yazi: 'Paylaş',
-                    fonksiyonum: (() {
-                      print("Paylaş");
-                    }),
-                  ),
+                  TextButton.icon(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.share,
+                        color: Colors.grey,
+                      ),
+                      label: Text(
+                        "Paylaş",
+                        style: TextStyle(
+                            color: Colors.grey, fontWeight: FontWeight.bold),
+                      ))
                 ],
               )
             ],
@@ -248,6 +252,7 @@ class IconluButon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.white,
       child: InkWell(
         onTap: fonksiyonum,
         child: Container(
