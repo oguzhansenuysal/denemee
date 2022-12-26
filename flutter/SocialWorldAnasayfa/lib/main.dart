@@ -105,39 +105,56 @@ class AnaSayfa extends StatelessWidget {
   }
 
   Widget profilkarti(String kullaniciadi, String resimlinki) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-      child: Column(
-        children: [
-          Stack(
-            alignment: Alignment.topRight,
+    return Material(
+      child: InkWell(
+        onTap: () {},
+        child: Padding(
+          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+          child: Column(
             children: [
-              Container(
-                  width: 70,
-                  height: 70,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      border: Border.all(width: 2.0, color: Colors.grey),
-                      borderRadius: BorderRadius.circular(35.0),
-                      image: DecorationImage(
-                          image: NetworkImage(resimlinki), fit: BoxFit.cover))),
-              Container(
-                width: 20,
-                height: 20,
-                decoration: BoxDecoration(
-                    color: Colors.green,
-                    borderRadius: BorderRadius.circular(25),
-                    border: Border.all(width: 2, color: Colors.white)),
+              Stack(
+                alignment: Alignment.topRight,
+                children: [
+                  Container(
+                      width: 70,
+                      height: 70,
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          border: Border.all(width: 2.0, color: Colors.grey),
+                          borderRadius: BorderRadius.circular(35.0),
+                          image: DecorationImage(
+                              image: NetworkImage(resimlinki),
+                              fit: BoxFit.cover))),
+                  Container(
+                    width: 20,
+                    height: 20,
+                    decoration: BoxDecoration(
+                        color: Colors.green,
+                        borderRadius: BorderRadius.circular(25),
+                        border: Border.all(width: 2, color: Colors.white)),
+                  )
+                ],
+              ),
+              SizedBox(height: 4),
+              Text(
+                kullaniciadi,
+                style: TextStyle(fontSize: 15.0, color: Colors.black),
               )
             ],
           ),
-          SizedBox(height: 4),
-          Text(
-            kullaniciadi,
-            style: TextStyle(fontSize: 15.0, color: Colors.black),
-          )
-        ],
+        ),
       ),
+    );
+  }
+}
+
+class ProfilSayfasi extends StatelessWidget {
+  const ProfilSayfasi({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Center(child: Text("Profil Sayfası")),
     );
   }
 }
